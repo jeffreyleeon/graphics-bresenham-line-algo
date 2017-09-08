@@ -1,16 +1,17 @@
 from matplotlib import pyplot as plt
+import time
 
 f = plt.figure(1, figsize = (8,8))
 ax = f.gca()
-ax.set_xlim([0, 100])
-ax.set_ylim([0, 100])
+ax.set_xlim([0, 10000])
+ax.set_ylim([0, 10000])
 f.show()
 
 # Assuming x2 > x1 and y2 > y1
 x1 = 0.0
 y1 = 0.0
-x2 = 100.0
-y2 = 33.0
+x2 = 10000.0
+y2 = 5000.0
 
 dx = x2 - x1
 dy = y2 - y1
@@ -20,6 +21,7 @@ error = 0.0
 y = y1
 x = x1
 
+begin = time.time()
 while x < x2:
     ax.plot(x, y, 'ko')
     f.canvas.draw()
@@ -28,7 +30,9 @@ while x < x2:
     if error >= 0.5:
         y = y + 1
         error -= 1.0
-    raw_input('pause : press any key ...')
+    # raw_input('pause : press any key ...')
+end = time.time()
+print('Time spent: {}'.format(end - begin))
 f.close()
 
 '''
